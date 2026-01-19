@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '4.5mb',
+           sizeLimit: '4.5mb',
         },
     },
 };
