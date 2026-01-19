@@ -33,17 +33,25 @@ export default async function handler(req, res) {
         // ==========================================
         // ACTION: GENERATE VERIFICATION LINE
         // ==========================================
-        if (action === 'generateLine') {
-            const prompt = `Generate a unique verification phrase using this format: "ScaleVest Verification Alpha Venture Apex Protocol Code 1234". Return ONLY the phrase, no other text.`;
-            
-            const result = await model.generateContent(prompt);
-            const text = result.response.text().trim();
-            
-            return res.status(200).json({ 
-                success: true, 
-                verificationLine: text 
-            });
-        } 
+       if (action === 'generateLine') {
+    // UPDATED PROMPT: Forces randomness and introduces "Codenames"
+    const prompt = `Generate a unique ScaleVest verification phrase. 
+    The format must be: "ScaleVest Verification Alpha Venture Apex Protocol Code [X]". 
+    
+    For [X], follow these rules:
+    1. 50% of the time, [X] should be a 4-digit random number (not always starting with 7).
+    2. 50% of the time, [X] should be a 'Codename' like 'TIGER Z', 'CYBER NEON', 'BIG PANDA', or 'PHANTOM'.
+    
+    Return ONLY the full phrase. No other text.`;
+
+    const result = await model.generateContent(prompt);
+    const text = result.response.text().trim();
+
+    return res.status(200).json({ 
+        success: true, 
+        verificationLine: text 
+    });
+}
         
         // ==========================================
         // ACTION: VERIFY VIDEO (URL BYPASS METHOD)
