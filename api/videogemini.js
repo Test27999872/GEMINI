@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
         // ✅ FIX: Using 'gemini-1.5-flash' without the version prefix or '-latest' suffix
         // The SDK handles the URL versioning automatically.
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
         if (action === 'generateLine') {
             const prompt = `Generate a unique verification phrase using this format: "ScaleVest Verification Alpha Venture Apex Protocol Code 1234". Return ONLY the phrase, no other text.`;
