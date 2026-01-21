@@ -1,7 +1,7 @@
-// api/summary.js
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         if (action === 'summarizeApplication') {
             const { application, vest } = data;
 
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+            const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
             const prompt = `
 You are an AI assistant helping an angel investor analyze a startup funding application.
