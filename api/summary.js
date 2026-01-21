@@ -1,9 +1,24 @@
-
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
 
 export default async function handler(req, res) {
+    // --- CORS HEADERS START ---
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    // Matches your origin from the error log
+    res.setHeader('Access-Control-Allow-Origin', 'https://upscalevest.site'); 
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    );
+
+    // Handle the Preflight request (The browser's "handshake")
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    // --- CORS HEADERS END ---
+
     if (req.method !== 'POST') {
         return res.status(405).json({ success: false, error: 'Method not allowed' });
     }
@@ -14,6 +29,7 @@ export default async function handler(req, res) {
         if (action === 'summarizeApplication') {
             const { application, vest } = data;
 
+            // Ensure the model is correctly initialized
             const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
             const prompt = `
