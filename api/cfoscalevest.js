@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // Initialize Gemini AI with your API key
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
 
     // Initialize the model
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash",
+      model: "gemini-2.0-flash",
       systemInstruction: `You are an elite CFO (Chief Financial Officer) for ScaleVest, an intelligent business management platform. Your role is to:
 
 1. Analyze business financial data with precision
