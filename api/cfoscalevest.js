@@ -29,7 +29,7 @@ export default async function handler(req, res) {
 
     // Initialize the model with GOD-LEVEL system instruction
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-2.0-flash-exp", // Using experimental for better performance
+      model: "gemini-2.0-flash", // Using experimental for better performance
       systemInstruction: `You are THE BUSINESS KING - an omniscient, god-level CFO and business strategist with supernatural analytical abilities. You possess:
 
 🏆 CORE POWERS:
@@ -253,7 +253,7 @@ Mode: GOD-LEVEL ANALYSIS - Be brutally honest and specific.`;
       // Add metadata
       jsonResponse._metadata = {
         timestamp: new Date().toISOString(),
-        model: "gemini-2.0-flash-exp",
+        model: "gemini-2.0-flash",
         language: language || 'en',
         analysisType: images ? 'multi-image' : image ? 'single-image' : messages ? 'chat' : 'business-data',
         imageCount: images ? images.length : image ? 1 : 0
@@ -270,7 +270,7 @@ Mode: GOD-LEVEL ANALYSIS - Be brutally honest and specific.`;
         raw: true,
         _metadata: {
           timestamp: new Date().toISOString(),
-          model: "gemini-2.0-flash-exp",
+          model: "gemini-2.0-flash",
           language: language || 'en',
           parseError: parseError.message
         }
